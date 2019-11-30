@@ -2,8 +2,7 @@ package dao;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
-import webprog.model.Kocsi;
-
+import webprog.model.Edesseg;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -27,33 +26,33 @@ public class DAOJSON {
         }
     }
 
-    public Collection<Kocsi> readAllKocsi() throws IOException {
-        Collection<Kocsi> result = new ArrayList<>();
+    public Collection<Edesseg> readAllEdesseg() throws IOException {
+        Collection<Edesseg> result = new ArrayList<>();
         result= mapper.readValue(file,
-                new TypeReference<ArrayList<Kocsi>>(){});
+                new TypeReference<ArrayList<Edesseg>>(){});
         return result;
     }
 
-    public void addKocsi(Kocsi kocsi) throws IOException, DuplikaltAuto {
+    public void addEdesseg(Edesseg edesseg) throws IOException, DuplikaltEdesseg {
         try {
-            readKocsiByRendszam(kocsi.getRendszam());
-        } catch (KocsiNemTalalhato kocsiNemTalalhato) {
-            Collection<Kocsi> cars = readAllKocsi();
-            cars.add(kocsi);
-            mapper.writeValue(file, cars);
+            readEdessegByTermekszam(edesseg.getTermekszam());
+        } catch (EdessegNemTalalhato edessegNemTalalhato) {
+            Collection<Edesseg> sweets = readAllEdesseg();
+            sweets.add(edesseg);
+            mapper.writeValue(file, sweets);
             return;
         }
-        throw new DuplikaltAuto(kocsi.getRendszam());
+        throw new DuplikaltEdesseg(edesseg.getTermekszam());
     }
 
-    public Kocsi readKocsiByRendszam(String rendszam) throws IOException,
-            KocsiNemTalalhato {
-        Collection<Kocsi> cars = readAllKocsi();
-        for(Kocsi k: cars){
-            if(k.getRendszam().equalsIgnoreCase(rendszam)){
+    public Edesseg readEdessegByTermekszam(String termekszam) throws IOException,
+            EdessegNemTalalhato {
+        Collection<Edesseg> sweets = readAllEdesseg();
+        for(Edesseg k: sweets){
+            if(k.getTermekszam().equalsIgnoreCase(termekszam)){
                 return k;
             }
         }
-        throw new KocsiNemTalalhato();
+        throw new EdessegNemTalalhato();
     }
 }
