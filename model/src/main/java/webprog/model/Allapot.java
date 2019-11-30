@@ -1,0 +1,8 @@
+package webprog.model;
+
+public enum Allapot {
+    TORESMENTES, RONCS, JO, MEGKIMELT,
+    UJSZERU, NORMAL, KITUNO, HIANYOS,
+    MOTORHIBAS, VALTOHIBAS, ELEKTRONIKAI_HIBAS
+
+}

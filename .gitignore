@@ -1,0 +1,4 @@
+# Project exclude paths
+/model/target/
+/out/
+/web/target/
