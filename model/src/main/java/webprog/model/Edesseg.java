@@ -8,7 +8,7 @@ import webprog.exceptions.InvalidSzinKod;
 import java.time.LocalDate;
 import java.util.Collection;
 
-public class Kocsi {
+public class Edesseg {
     private int evjarat;
     private double hengerurtartalom;
     private String rendszam;
@@ -24,7 +24,7 @@ public class Kocsi {
     private Collection<Allapot> allapot;
     private int teljesitmeny;
 
-    public Kocsi() {
+    public Edesseg() {
     }
 
     @Override
@@ -167,7 +167,7 @@ public class Kocsi {
     }
 
 
-    public Kocsi(int evjarat, double hengerurtartalom, String rendszam, String marka, String tipus, Kivitel kivitel, LocalDate muszaki_ervenyesseg, Uzemanyag uzemanyag, String szin_hexakod, Szinezes szinezes, int ajtok_szama, Collection<Allapot> allapot, int teljesitmeny) throws InvalidRendszam, InvalidSzinKod, InvalidEvjarat {
+    public Edesseg(int evjarat, double hengerurtartalom, String rendszam, String marka, String tipus, Kivitel kivitel, LocalDate muszaki_ervenyesseg, Uzemanyag uzemanyag, String szin_hexakod, Szinezes szinezes, int ajtok_szama, Collection<Allapot> allapot, int teljesitmeny) throws InvalidRendszam, InvalidSzinKod, InvalidEvjarat {
         setEvjarat(evjarat);
         System.out.println("CONSTRUTROC VAGYOk");
         this.hengerurtartalom = hengerurtartalom;
