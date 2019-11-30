@@ -19,24 +19,26 @@
 <h2>Sweets in the database</h2>
 
 <table frame="border" width="250" rules="all">
-    <c:forEach items="${sweets}" var="auto">
+    <c:forEach items="${sweets}" var="edesseg">
         <tr>
-          <td> <a href="${pageContext.servletContext.contextPath}/auto/${auto.rendszam}">
-                  ${auto.rendszam}</a>
+          <td> <a href="${pageContext.servletContext.contextPath}/auto/${edesseg.termekszam}">
+                  ${edesseg.termekszam}</a>
            </td>
-            <td>${auto.marka}</td>
-            <td>${auto.tipus}</td>
-            <td>${auto.evjarat}</td>
+            <td>${edesseg.marka}</td>
+            <td>${edesseg.ize}</td>
+            <td>${edesseg.gyartas_eve}</td>
+            <td>${edesseg.mennyiseg}</td>
+            <td>${edesseg.lejarat_datuma}</td>
         </tr>
 
     </c:forEach>
 </table>
 </c:if>
-<c:if test="${empty cars}">
+<c:if test="${empty sweets}">
 No cars in the database
 </c:if>
 
-<form action="${pageContext.servletContext.contextPath}/addKocsi">
+<form action="${pageContext.servletContext.contextPath}/addEdesseg">
     <input type="submit" value="Add auto">
 </form>
 <form action="${pageContext.servletContext.contextPath}/">
