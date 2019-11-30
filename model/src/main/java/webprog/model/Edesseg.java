@@ -9,20 +9,14 @@ import java.time.LocalDate;
 import java.util.Collection;
 
 public class Edesseg {
-    private int evjarat;
-    private double hengerurtartalom;
-    private String rendszam;
+    private int gyartas_eve;
+    private String termekszam;
     private String marka;
-    private String tipus;
-    private Kivitel kivitel;
+    private String ize;
+    private Mennyiseg_Tipus_Szerint mennyiseg_tipus_szerint;
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
-    private LocalDate muszaki_ervenyesseg;
-    private Uzemanyag uzemanyag;
-    private String szin_hexakod;
-    private Szinezes szinezes;
-    private int ajtok_szama;
-    private Collection<Allapot> allapot;
-    private int teljesitmeny;
+    private LocalDate lejarat_datuma;
+    private Collection<Tipus> tipus;
 
     public Edesseg() {
     }
