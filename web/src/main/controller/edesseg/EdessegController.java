@@ -3,15 +3,15 @@ package auto;
 
 import com.fasterxml.jackson.databind.JsonMappingException;
 import dao.DAOJSON;
-import dao.DuplikaltAuto;
-import dao.KocsiNemTalalhato;
+import dao.DuplikaltEdesseg;
+import dao.EdessegNemTalalhato;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-import webprog.model.Allapot;
-import webprog.model.Kivitel;
-import webprog.model.Kocsi;
+import webprog.model.Tipus;
+import webprog.model.Mennyiseg;
+import webprog.model.Edesseg;
 
 import javax.jws.WebParam;
 import java.io.IOException;
@@ -31,7 +31,7 @@ public class EdessegController{
     }
 
     @RequestMapping(value = "/edessegek")
-    public ModelAndView listAutos() throws IOException {
+    public ModelAndView listEdessegek() throws IOException {
         ModelAndView mav  = new ModelAndView("edessegek");
         mav.addObject("edessegek",dao.readAllEdesseg());
         return mav;
@@ -45,8 +45,8 @@ public class EdessegController{
         return mav;
     }
 
-    @RequestMapping(value = "/addKocsi", method = RequestMethod.POST)
-    public ModelAndView addAuto(@ModelAttribute Edesseg edesseg) throws IOException {
+    @RequestMapping(value = "/addEdesseg", method = RequestMethod.POST)
+    public ModelAndView addEdesseg(@ModelAttribute Edesseg edesseg) throws IOException {
         System.out.println(edesseg);
         try {
             dao.addEdesseg(edesseg);
@@ -64,7 +64,7 @@ public class EdessegController{
     }
 
     @RequestMapping(value = "/edesseg/{termekszam}")
-    public ModelAndView getAutoByRendszam(@PathVariable String termekszam) throws IOException, EdessegNemTalalhato {
+    public ModelAndView getEdessegByTermekszam(@PathVariable String termekszam) throws IOException, EdessegNemTalalhato {
         ModelAndView mav = new ModelAndView("sweetDetails");
         mav.addObject("edesseg", dao.readEdessegByTermekszam(termekszam));
         return mav;
