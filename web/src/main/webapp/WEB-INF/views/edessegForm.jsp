@@ -11,12 +11,12 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Kocsi hozzaadasa</title>
+    <title>Edesseg hozzadasa</title>
 </head>
 <body>
 
 ${message}
-<h2>Kocsi adatai:</h2>
+<h2>Edesseg adatai:</h2>
 <form:form method="post" action="addKocsi">
     <form:label path="rendszam">Rendszam</form:label>
     <form:input path="rendszam"/>
