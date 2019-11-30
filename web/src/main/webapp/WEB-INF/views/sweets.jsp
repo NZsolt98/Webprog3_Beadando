@@ -10,16 +10,16 @@
 <%@page isELIgnored="false"%>
 <html>
 <head>
-    <title>Cars</title>
+    <title>Sweets</title>
 </head>
 <body>
 
-<c:if test="${!empty cars}">
+<c:if test="${!empty sweets}">
 
-<h2>Cars in the database</h2>
+<h2>Sweets in the database</h2>
 
 <table frame="border" width="250" rules="all">
-    <c:forEach items="${cars}" var="auto">
+    <c:forEach items="${sweets}" var="auto">
         <tr>
           <td> <a href="${pageContext.servletContext.contextPath}/auto/${auto.rendszam}">
                   ${auto.rendszam}</a>
