@@ -36,8 +36,8 @@ ${message}
     <form:label path="lejarat_datuma">Lejárat dátuma</form:label>
     <form:input type="date" path="lejarat_datuma"/>
     <br>
-    <form:label path="kivitel">Mennyiség típus szerint</form:label>
-    <form:select path="kivitel">
+    <form:label path="mennyiseg_tipus_szerint">Mennyiség típus szerint</form:label>
+    <form:select path="mennyiseg_tipus_szerint">
         <form:options items="${mennyisegTipusok}"/>
     </form:select>
     <br>
