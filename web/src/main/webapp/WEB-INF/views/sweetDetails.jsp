@@ -10,25 +10,33 @@
 
 <html>
 <head>
-    <title>${auto.rendszam} car details</title>
+    <title>${edesseg.termekszam} sweet details</title>
 </head>
 <body>
 <table>
     <tr>
-        <td>Rendszam</td>
-        <td>${auto.rendszam}</td>
+        <td>Termekszam</td>
+        <td>${edesseg.termekszam}</td>
     </tr>
     <tr>
         <td>Márka</td>
-        <td>${auto.marka}</td>
+        <td>${edesseg.marka}</td>
     </tr>
     <tr>
-        <td>Típus</td>
-        <td>${auto.tipus}</td>
+        <td>Íze</td>
+        <td>${edesseg.ize}</td>
     </tr>
     <tr>
-        <td>Kivitel</td>
-        <td>${auto.kivitel}</td>
+        <td>Gyartas eve</td>
+        <td>${edesseg.gyartas_eve}</td>
+    </tr>
+    <tr>
+        <td>Mennyiseg</td>
+        <td>${edesseg.mennyiseg}</td>
+    </tr>
+    <tr>
+        <td>Lejarat datuma</td>
+        <td>${edesseg.lejarat_datuma}</td>
     </tr>
 </table>
 <form action="${pageContext.servletContext.contextPath}/">
