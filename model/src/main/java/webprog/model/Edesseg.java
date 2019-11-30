@@ -1,9 +1,8 @@
 package webprog.model;
 
 import org.springframework.format.annotation.DateTimeFormat;
-import webprog.exceptions.InvalidEvjarat;
-import webprog.exceptions.InvalidRendszam;
-import webprog.exceptions.InvalidSzinKod;
+import webprog.exceptions.InvalidGyartasEve;
+import webprog.exceptions.InvalidTermekszamException;
 
 import java.time.LocalDate;
 import java.util.Collection;
@@ -13,61 +12,32 @@ public class Edesseg {
     private String termekszam;
     private String marka;
     private String ize;
-    private Mennyiseg_Tipus_Szerint mennyiseg_tipus_szerint;
+    private Mennyiseg mennyiseg_tipus_szerint;
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private LocalDate lejarat_datuma;
     private Collection<Tipus> tipus;
 
-    public Edesseg() {
+
+    public int getGyartas_eve() {
+        return gyartas_eve;
     }
 
-    @Override
-    public String toString() {
-        return "Kocsi{" +
-                "evjarat=" + evjarat +
-                ", hengerurtartalom=" + hengerurtartalom +
-                ", rendszam='" + rendszam + '\'' +
-                ", marka='" + marka + '\'' +
-                ", tipus='" + tipus + '\'' +
-                ", kivitel=" + kivitel +
-                ", muszaki_ervenyesseg=" + muszaki_ervenyesseg +
-                ", uzemanyag=" + uzemanyag +
-                ", szin_hexakod='" + szin_hexakod + '\'' +
-                ", szinezes=" + szinezes +
-                ", ajtok_szama=" + ajtok_szama +
-                ", allapot=" + allapot +
-                ", teljesitmeny=" + teljesitmeny +
-                '}';
-    }
-
-    public int getEvjarat() {
-        return evjarat;
-    }
-
-    public void setEvjarat(int evjarat) throws InvalidEvjarat {
-        if (evjarat > LocalDate.now().getYear()) {
-            throw new InvalidEvjarat(String.valueOf(evjarat));
+    public void setGyartas_eve(int gyartas_eve) throws InvalidGyartasEve {
+        if (gyartas_eve > LocalDate.now().getYear()) {
+            throw new InvalidGyartasEve(String.valueOf(gyartas_eve));
         }
-        this.evjarat = evjarat;
+        this.gyartas_eve = gyartas_eve;
     }
 
-    public double getHengerurtartalom() {
-        return hengerurtartalom;
+    public String getTermekszam() {
+        return termekszam;
     }
 
-    public void setHengerurtartalom(double hengerurtartalom) {
-        this.hengerurtartalom = hengerurtartalom;
-    }
-
-    public String getRendszam() {
-        return rendszam;
-    }
-
-    public void setRendszam(String rendszam) throws InvalidRendszam {
-        if (rendszam.matches("^[A-z]{3}-\\d\\d\\d$")) {
-            this.rendszam = rendszam;
+    public void setTermekszam(String termekszam) throws InvalidTermekszamException {
+        if (termekszam.matches("^[A-z]{3}|[0-9]-\\d\\d\\d$")) {
+            this.termekszam = termekszam;
         } else {
-            throw new InvalidRendszam(rendszam);
+            throw new InvalidTermekszamException(termekszam);
         }
     }
 
@@ -79,102 +49,62 @@ public class Edesseg {
         this.marka = marka;
     }
 
-    public String getTipus() {
+    public String getIze() {
+        return ize;
+    }
+
+    public void setIze(String ize) {
+        this.ize = ize;
+    }
+
+    public Mennyiseg getMennyiseg_tipus_szerint() {
+        return mennyiseg_tipus_szerint;
+    }
+
+    public void setMennyiseg_tipus_szerint(Mennyiseg mennyiseg_tipus_szerint) {
+        this.mennyiseg_tipus_szerint = mennyiseg_tipus_szerint;
+    }
+
+    public LocalDate getLejarat_datuma() {
+        return lejarat_datuma;
+    }
+
+    public void setLejarat_datuma(LocalDate lejarat_datuma) {
+        this.lejarat_datuma = lejarat_datuma;
+    }
+
+    public Collection<Tipus> getTipus() {
         return tipus;
     }
 
-    public void setTipus(String tipus) {
+    public void setTipus(Collection<Tipus> tipus) {
         this.tipus = tipus;
     }
 
-    public Kivitel getKivitel() {
-        return kivitel;
+    public Edesseg(int gyartas_eve, String termekszam, String marka, String ize, Mennyiseg mennyiseg_tipus_szerint, LocalDate lejarat_datuma, Collection<Tipus> tipus) throws InvalidTermekszamException, InvalidGyartasEve {
+        setGyartas_eve(gyartas_eve);
+        setTermekszam(termekszam);
+        this.setMarka(marka);
+        this.setTipus(tipus);
+        this.setIze(ize);
+        this.setMennyiseg_tipus_szerint(mennyiseg_tipus_szerint);
+        setLejarat_datuma(lejarat_datuma);
     }
 
-    public void setKivitel(Kivitel kivitel) {
-        this.kivitel = kivitel;
-    }
-
-    public LocalDate getMuszaki_ervenyesseg() {
-        return muszaki_ervenyesseg;
-    }
-
-    public void setMuszaki_ervenyesseg(@DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate muszaki_ervenyesseg) {
-        this.muszaki_ervenyesseg = muszaki_ervenyesseg;
-    }
-
-    public Uzemanyag getUzemanyag() {
-        return uzemanyag;
-    }
-
-    public void setUzemanyag(Uzemanyag uzemanyag) {
-        this.uzemanyag = uzemanyag;
-    }
-
-    public String getSzin_hexakod() {
-        return szin_hexakod;
-    }
-
-    public void setSzin_hexakod(String szin_hexakod) throws InvalidSzinKod {
-        if (szin_hexakod.matches("^#([A-F]|[a-f]|\\d){6}$")) {
-            this.szin_hexakod = szin_hexakod;
-        } else {
-            throw new InvalidSzinKod();
-        }
+    public Edesseg() {
 
     }
 
-    public Szinezes getSzinezes() {
-        return szinezes;
-    }
-
-    public void setSzinezes(Szinezes szinezes) {
-        this.szinezes = szinezes;
-    }
-
-    public int getAjtok_szama() {
-        return ajtok_szama;
-    }
-
-    public void setAjtok_szama(int ajtok_szama) {
-        this.ajtok_szama = ajtok_szama;
-    }
-
-    public Collection<Allapot> getAllapot() {
-        return allapot;
-    }
-
-    public void setAllapot(Collection<Allapot> allapot) {
-        this.allapot = allapot;
-    }
-
-    public int getTeljesitmeny() {
-        return teljesitmeny;
-    }
-
-    public void setTeljesitmeny(int teljesitmeny) {
-        this.teljesitmeny = teljesitmeny;
-    }
-
-    public int loeroErteke() {
-        return 0;
-    }
-
-
-    public Edesseg(int evjarat, double hengerurtartalom, String rendszam, String marka, String tipus, Kivitel kivitel, LocalDate muszaki_ervenyesseg, Uzemanyag uzemanyag, String szin_hexakod, Szinezes szinezes, int ajtok_szama, Collection<Allapot> allapot, int teljesitmeny) throws InvalidRendszam, InvalidSzinKod, InvalidEvjarat {
-        setEvjarat(evjarat);
-        System.out.println("CONSTRUTROC VAGYOk");
-        this.hengerurtartalom = hengerurtartalom;
-        setRendszam(rendszam);
-        this.marka = marka;
-        this.tipus = tipus;
-        this.kivitel = kivitel;
-        setMuszaki_ervenyesseg(muszaki_ervenyesseg);
-        this.uzemanyag = uzemanyag;
-        setSzin_hexakod(szin_hexakod);
-        this.szinezes = szinezes;
-        this.ajtok_szama = ajtok_szama;
-        this.allapot = allapot;
-        this.teljesitmeny = teljesitmeny;
+    @Override
+    public String toString() {
+        return "Edesseg{" +
+                "gyartas_eve=" + getGyartas_eve() +
+                ", termekszam='" + getTermekszam() + '\'' +
+                ", marka='" + getMarka() + '\'' +
+                ", ize='" + getIze() + '\'' +
+                ", mennyiseg_tipus_szerint=" + getMennyiseg_tipus_szerint() +
+                ", lejarat_datuma=" + getLejarat_datuma() +
+                ", tipus=" + getTipus() +
+                '}';
     }
 }
