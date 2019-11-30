@@ -17,7 +17,7 @@ import javax.jws.WebParam;
 import java.io.IOException;
 
 @Controller
-public class AutoController{
+public class EdessegController{
 
     @Autowired
     DAOJSON dao;
